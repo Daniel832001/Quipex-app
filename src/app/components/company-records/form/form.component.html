@@ -1,0 +1,94 @@
+<form novalidate #form="ngForm" (submit)="onSubmit(form)" autocomplete="off">
+    <div class="form-group">
+        <label>Id</label>
+        <input
+            class="form-control form-control-lg"
+            type="number"
+            name="itemId"
+            #itemId="ngModel"
+            [(ngModel)]="service.companyRecordData.id"
+            (ngModelChange)="setIdDefault($event)"
+            placeholder="ID (defaults to 0 if empty)"
+        >
+    </div>
+    <div class="form-group">
+        <label>Name</label>
+        <input
+            class="form-control form-control-lg"
+            placeholder="Name"
+            name="Name"
+            #Name="ngModel"
+            [(ngModel)]="service.companyRecordData.name"
+            required
+            maxlength="150"
+            [class.invalid]="Name.invalid && Name.touched"
+        >
+        <div *ngIf="Name.touched">
+            <p *ngIf="Name.errors?.['required']">Name is required!</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Stock Ticker</label>
+        <input
+            class="form-control form-control-lg"
+            placeholder="Stock Ticker"
+            name="stockTicker"
+            #stockTicker="ngModel"
+            [(ngModel)]="service.companyRecordData.stockTicker"
+            required
+            maxlength="150"
+            [class.invalid]="stockTicker.invalid && stockTicker.touched"
+        >
+        <div *ngIf="stockTicker.touched">
+            <p *ngIf="stockTicker.errors?.['required']">Stock Ticker is required!</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Exchange</label>
+        <input
+            class="form-control form-control-lg"
+            placeholder="Exchange"
+            name="exchange"
+            #exchange="ngModel"
+            [(ngModel)]="service.companyRecordData.exchange"
+            required
+            maxlength="150"
+            [class.invalid]="exchange.invalid && exchange.touched"
+        >
+        <div *ngIf="stockTicker.touched">
+            <p *ngIf="stockTicker.errors?.['required']">Stock Ticker is required!</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>ISIN</label>
+        <input
+            class="form-control form-control-lg"
+            placeholder="ISIN"
+            name="iSIN"
+            #iSIN="ngModel"
+            [(ngModel)]="service.companyRecordData.isin"
+            required
+            maxlength="12"
+            [class.invalid]="iSIN.invalid && iSIN.touched"
+        >
+        <div *ngIf="stockTicker.touched">
+            <p *ngIf="stockTicker.errors?.['required']">Stock Ticker is required!</p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Website</label>
+        <input
+            class="form-control form-control-lg"
+            placeholder="Website"
+            name="website"
+            #website="ngModel"
+            [(ngModel)]="service.companyRecordData.website"
+            maxlength="150"
+            [class.invalid]="website.invalid && website.touched"
+        >
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-info btn-lg btn-block" type="submit" [disabled]="form.invalid">Create or Update(Id = 0/empty)</button>
+    </div>
+</form>

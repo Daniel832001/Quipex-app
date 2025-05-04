@@ -1,1 +1,34 @@
-<p>company-records works!</p>
+<div class="jumbotron py-3">
+    <h1 class="display-4 text-center">Company Records</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <app-form></app-form>
+    </div>
+    <div class="col-md-6">
+        <app-get-form></app-get-form>
+        <div class="table-responsive">
+            <table class="table mt-3">
+                <thead class="table-light">
+                    <tr>
+                        <th>Name</th>
+                        <th>Stock Ticker</th>
+                        <th>Exchange</th>
+                        <th>ISIN</th>
+                        <th>Website</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let pd of service.list">
+                        <td (click)="populateForm(pd)">{{ pd.name }}</td>
+                        <td (click)="populateForm(pd)">{{ pd.stockTicker }}</td>
+                        <td (click)="populateForm(pd)">{{ pd.exchange }}</td>
+                        <td (click)="populateForm(pd)">{{ pd.isin }}</td>
+                        <td (click)="populateForm(pd)">{{ pd.website }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

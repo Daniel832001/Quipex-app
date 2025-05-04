@@ -5,6 +5,7 @@ import { NgForm } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { CompanyRecord } from '../../../models/company-record.model';
 import { CompanyRecordAppService } from '../../../services/company-record-app.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   standalone: true, 
@@ -40,7 +41,16 @@ export class FormComponent implements OnInit {
         this.service.refreshList();
         this.toastr.success("Submitted successfully", "ToDo Item Register");
       },
-      err => { console.log(err); }
+      (err: HttpErrorResponse) => { 
+        console.error(err);
+        if (err.status === 400) {
+          alert('Creation failed: Invalid data. ISIN must not start with 2 numbers and must be 12 characters long.');
+        } else if (err.status === 409) {
+          alert('Creation failed: A record with this ISIN or name already exists.');
+        } else {
+          alert('Unexpected error occurred. Please try again.');
+        }
+      }
     );
   }
 
@@ -51,7 +61,16 @@ export class FormComponent implements OnInit {
         this.service.refreshList();
         this.toastr.info("Updated successfully", "ToDo Item Register");
       },
-      err => { console.log(err); }
+      (err: HttpErrorResponse) => { 
+        console.error(err);
+        if (err.status === 400) {
+          alert('Creation failed: Invalid data. ISIN must not start with 2 numbers and must be 12 characters long.');
+        } else if (err.status === 409) {
+          alert('Creation failed: A record with this ISIN or name already exists.');
+        } else {
+          alert('Unexpected error occurred. Please try again.');
+        }
+      }
     );
   }
 

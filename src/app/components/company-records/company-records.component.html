@@ -12,6 +12,7 @@
             <table class="table mt-3">
                 <thead class="table-light">
                     <tr>
+                        <th>Id</th>
                         <th>Name</th>
                         <th>Stock Ticker</th>
                         <th>Exchange</th>
@@ -21,6 +22,7 @@
                 </thead>
                 <tbody>
                     <tr *ngFor="let pd of service.list">
+                        <td (click)="populateForm(pd)">{{ pd.id }}</td>
                         <td (click)="populateForm(pd)">{{ pd.name }}</td>
                         <td (click)="populateForm(pd)">{{ pd.stockTicker }}</td>
                         <td (click)="populateForm(pd)">{{ pd.exchange }}</td>

@@ -24,6 +24,7 @@ export class GetFormComponent {
         (err) => {
           console.error('Error fetching record:', err);
           this.service.list = [];
+          alert('Record not found. Please check the ID and try again.');
         }
       );
     } else {
@@ -34,6 +35,7 @@ export class GetFormComponent {
         },
         (err) => {
           console.error('Error fetching all records:', err);
+          alert('Error fetching all records');
         }
       );
     }
